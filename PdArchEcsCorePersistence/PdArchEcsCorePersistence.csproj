@@ -12,9 +12,9 @@
     <OutputPath>./nupkg</OutputPath>
 
     <Title>PdArchEcsCorePersistence</Title>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>PdArchEcsCorePersistence description.</Description>
-    <Copyright>© 2024 nazgul30</Copyright>
+    <Copyright>© 2025 nazgul30</Copyright>
     <Authors>nazgul30</Authors>
     <Company>nazgul30</Company>
 
