@@ -7,25 +7,21 @@ using Godot;
 using PdArchEcsCore.Utils;
 using PdArchEcsCore.Worlds;
 using PdPools;
-using VContainer.Pools;
 
 public abstract class AMultipleEntityAccess<TWorld, TState, TStateInterface>
         : AEntityAccess<List<TState>, TStateInterface>
         where TWorld : IWorld
-        where TState : TStateInterface
+        where TState : TStateInterface, new()
         where TStateInterface : IProperty
 {
     private readonly IWorld _world;
-    private readonly IPool<TState> _pool;
 
     protected AMultipleEntityAccess(
         TWorld world,
-        IObjectAccess<TStateInterface> objectAccess,
-        IPool<TState> pool
+        IObjectAccess<TStateInterface> objectAccess
     ) : base(objectAccess)
     {
         _world = world;
-        _pool = pool;
     }
 
     protected override bool Skip(Entity entity) => false;
@@ -76,7 +72,7 @@ public abstract class AMultipleEntityAccess<TWorld, TState, TStateInterface>
         for (var i = 0; i < count; i++)
         {
             var entity = buffer[i];
-            TStateInterface access = _pool.Spawn();
+            TStateInterface access = new TState();
             _objectAccess.GetState(entity, ref access);
             try
             {
